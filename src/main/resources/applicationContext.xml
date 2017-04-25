@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+        ">
+
+    <!--&lt;!&ndash; 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 &ndash;&gt;
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
+    <!-- <context:annotation-config/>-->
+    <context:component-scan base-package="com.yinom.*"/>
+
+    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:jdbc.properties</value>
+        </property>
+    </bean>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <!-- 指定连接数据库的URL -->
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <!-- 指定连接数据库的用户名 -->
+        <property name="user" value="${jdbc.username}"/>
+        <!-- 指定连接数据库的密码 -->
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 指定连接池中保留的最大连接数. Default:15 -->
+        <property name="maxPoolSize" value="40"/>
+        <!-- 指定连接池中保留的最小连接数 -->
+        <property name="minPoolSize" value="1"/>
+        <!-- 指定连接池的初始化连接数 取值应在minPoolSize 与 maxPoolSize 之间.Default:3 -->
+        <property name="initialPoolSize" value="1"/>
+        <!-- 最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。 Default:0 -->
+        <property name="maxIdleTime" value="60"/>
+        <!-- 每60秒检查所有连接池中的空闲连接.Default:0 -->
+        <property name="idleConnectionTestPeriod" value="60"/>
+        <!-- 没有连接可用时，等待连接的时间，单位：毫秒 -->
+        <property name="checkoutTimeout" value="2000"></property>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="current_session_context_class">thread</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 扫描与数据库表对应实体类所在的entity包 -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.yinom.pdd.erp.bean</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate" autowire="byType"></bean>
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+          autowire="byType"></bean>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="modify*" propagation="REQUIRED"/>
+            <tx:method name="del*" propagation="REQUIRED"/>
+            <tx:method name="query*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="servicePointCut" expression="execution(* com.yinom.pdd.erp.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointCut"/>
+    </aop:config>
+
+</beans>
