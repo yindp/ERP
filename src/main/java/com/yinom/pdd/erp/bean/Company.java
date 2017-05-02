@@ -17,11 +17,11 @@ public class Company {
     private String address;
     private String phone;
     private String describe;
-    private Company headquarter;
+    /*private Company headquarter;
     private Set<Company> affiliates = new HashSet<Company>();
     private Set<Department> departments = new HashSet<Department>();
     private Set<Post> posts = new HashSet<Post>();
-    private Set<User> users = new HashSet<User>();
+    private Set<User> users = new HashSet<User>();*/
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -66,7 +66,7 @@ public class Company {
         this.describe = describe;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   /* @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "headquarter_id")
     public Company getHeadquarter() {
         return headquarter;
@@ -143,5 +143,5 @@ public class Company {
                 ", posts=" + posts +
                 ", users=" + users +
                 '}';
-    }
+    }*/
 }

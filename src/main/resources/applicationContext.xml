@@ -32,18 +32,18 @@
         <property name="user" value="${jdbc.username}"/>
         <!-- 指定连接数据库的密码 -->
         <property name="password" value="${jdbc.password}"/>
-        <!-- 指定连接池中保留的最大连接数. Default:15 -->
+        <!--&lt;!&ndash; 指定连接池中保留的最大连接数. Default:15 &ndash;&gt;
         <property name="maxPoolSize" value="40"/>
-        <!-- 指定连接池中保留的最小连接数 -->
+        &lt;!&ndash; 指定连接池中保留的最小连接数 &ndash;&gt;
         <property name="minPoolSize" value="1"/>
-        <!-- 指定连接池的初始化连接数 取值应在minPoolSize 与 maxPoolSize 之间.Default:3 -->
+        &lt;!&ndash; 指定连接池的初始化连接数 取值应在minPoolSize 与 maxPoolSize 之间.Default:3 &ndash;&gt;
         <property name="initialPoolSize" value="1"/>
-        <!-- 最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。 Default:0 -->
+        &lt;!&ndash; 最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。 Default:0 &ndash;&gt;
         <property name="maxIdleTime" value="60"/>
-        <!-- 每60秒检查所有连接池中的空闲连接.Default:0 -->
+        &lt;!&ndash; 每60秒检查所有连接池中的空闲连接.Default:0 &ndash;&gt;
         <property name="idleConnectionTestPeriod" value="60"/>
-        <!-- 没有连接可用时，等待连接的时间，单位：毫秒 -->
-        <property name="checkoutTimeout" value="2000"></property>
+        &lt;!&ndash; 没有连接可用时，等待连接的时间，单位：毫秒 &ndash;&gt;
+        <property name="checkoutTimeout" value="2000"></property>-->
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>

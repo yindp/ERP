@@ -15,11 +15,11 @@ public class Department {
     private String id;
     private String name;
     private String describe;
-    private Company company;
-    private Set<Department> superiorDepartment;
+    /*private Company company;
+    private Department superiorDepartment;
     private Set<Department> subDepartments = new HashSet<Department>();
     private Set<Post> posts = new HashSet<Post>();
-    private Set<User> users = new HashSet<User>();
+    private Set<User> users = new HashSet<User>();*/
 
 
     @Id
@@ -49,7 +49,7 @@ public class Department {
         this.describe = describe;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /*@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     public Company getCompany() {
         return company;
@@ -61,11 +61,11 @@ public class Department {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "superiorDepartment_id")
-    public Set<Department> getSuperiorDepartment() {
+    public Department getSuperiorDepartment() {
         return superiorDepartment;
     }
 
-    public void setSuperiorDepartment(Set<Department> superiorDepartment) {
+    public void setSuperiorDepartment(Department superiorDepartment) {
         this.superiorDepartment = superiorDepartment;
     }
 
@@ -100,7 +100,7 @@ public class Department {
 
     }
 
-    public Department(String id, String name, String describe, Company company, Set<Department> superiorDepartment, Set<Department> subDepartments, Set<Post> posts, Set<User> users) {
+    public Department(String id, String name, String describe, Company company, Department superiorDepartment, Set<Department> subDepartments, Set<Post> posts, Set<User> users) {
         this.id = id;
         this.name = name;
         this.describe = describe;
@@ -123,5 +123,5 @@ public class Department {
                 ", posts=" + posts +
                 ", users=" + users +
                 '}';
-    }
+    }*/
 }

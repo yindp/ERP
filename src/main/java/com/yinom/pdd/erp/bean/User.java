@@ -16,9 +16,9 @@ public class User {
     private String email;
     private String phone;
     private String describe;
-    private Company company;
+   /* private Company company;
     private Department department;
-    private Post post;
+    private Post post;*/
 
 
     @Id
@@ -72,7 +72,7 @@ public class User {
         this.describe = describe;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /*@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     public Company getCompany() {
         return company;
@@ -131,5 +131,5 @@ public class User {
                 ", department=" + department +
                 ", post=" + post +
                 '}';
-    }
+    }*/
 }

@@ -15,11 +15,11 @@ public class Post {
     private String id;
     private String name;
     private String describe;
-    private Company company;
+   /* private Company company;
     private Department department;
     private Post superiorPost;
     private Set<Post> subPosts;
-    private Set<User> users = new HashSet<User>();
+    private Set<User> users = new HashSet<User>();*/
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -48,7 +48,7 @@ public class Post {
         this.describe = describe;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+/*    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     public Company getCompany() {
         return company;
@@ -124,5 +124,5 @@ public class Post {
                 ", subPosts=" + subPosts +
                 ", users=" + users +
                 '}';
-    }
+    }*/
 }
