@@ -1,50 +1,57 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.Company;
-import com.yinom.pdd.erp.dao.inte.CompanyDAOInte;
-import com.yinom.pdd.erp.util.OurSessionFactory;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.yinom.pdd.erp.dao.ICompanyDAO;
+import org.springframework.stereotype.Repository;
 
 /**
- * Created by yindp on 5/2/17.
+ * Created by yindp on 5/4/2017.
  */
-public class CompanyDAOImpl implements CompanyDAOInte {
-    private Session session = OurSessionFactory.openSession();
+@Repository(value = "iCompanyDAO")
+public class CompanyDAOImpl extends BaseDAOImpl<Company> implements ICompanyDAO {
+/*
+    @Autowired
+    private SessionFactory sessionFactory;
 
     public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
+        return sessionFactory.getCurrentSession();
     }
 
     public void insert(Company company) {
-        session.saveOrUpdate(company);
-    }
-
-    public void delete(Company company) {
-        session.delete(company);
-    }
-
-    public void update(Company company) {
-        session.update(company);
-    }
-
-    public Company query(Company company) {
-        Company company1 = session.load(Company.class, company.getId());
-        return company1;
+        System.out.println("Start Insert");
+        try {
+            getSession().saveOrUpdate(company);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Company> queryAll() {
-        String hql = "from Company";
         List<Company> companies = null;
-        Query query = session.createQuery(hql);
+        String hql = "from Company";
+        Query query = getSession().createQuery(hql);
         companies = query.getResultList();
         return companies;
     }
+
+    public List<Company> queryHeadQuarters(Company company) {
+        List<Company> companies = null;
+        String hql = "from Company where id=?";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0, company.getHeadquarter());
+        companies = query.getResultList();
+        return companies;
+    }
+
+    public List<Company> queryAffiliates(Company company) {
+        List<Company> companies = null;
+        String hql = "from Company where headquarter=?";
+        Query query = getSession().createQuery(hql);
+        query.setParameter(0, company.getId());
+        companies = query.getResultList();
+        return companies;
+    }
+*/
+
+
 }

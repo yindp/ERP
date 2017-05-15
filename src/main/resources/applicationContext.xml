@@ -16,7 +16,7 @@
 
     <!--&lt;!&ndash; 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 &ndash;&gt;
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>-->
-    <!-- <context:annotation-config/>-->
+   <!-- <context:annotation-config/>-->
     <context:component-scan base-package="com.yinom.*"/>
 
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">

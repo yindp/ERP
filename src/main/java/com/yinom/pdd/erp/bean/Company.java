@@ -3,11 +3,10 @@ package com.yinom.pdd.erp.bean;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by yindp on 4/25/17.
+ * Created by yindp on 5/3/2017.
  */
 @Entity
 @Table(name = "tb_company")
@@ -15,17 +14,16 @@ public class Company {
     private String id;
     private String name;
     private String address;
-    private String phone;
-    private String describe;
-    private Company headquarter;
-    private Set<Company> affiliates = new HashSet<Company>();
-    private Set<Department> departments = new HashSet<Department>();
-    private Set<Post> posts = new HashSet<Post>();
-    private Set<User> users = new HashSet<User>();
+    private String comment;
+    private Company parent;
+    private Set<Company> children;
+    private Set<Department> departments;
+    private Set<Post> posts;
+    private Set<User> users;
 
+    @GenericGenerator(name = "g", strategy = "uuid")
+    @GeneratedValue(generator = "g")
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
     public String getId() {
         return id;
     }
@@ -50,42 +48,35 @@ public class Company {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getComment() {
+        return comment;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public String getDescribe() {
-        return describe;
+    @ManyToOne
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
+    public Company getParent() {
+        return parent;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setParent(Company parent) {
+        this.parent = parent;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "headquarter_id")
-    public Company getHeadquarter() {
-        return headquarter;
+
+    @OneToMany(mappedBy = "parent")
+    public Set<Company> getChildren() {
+        return children;
     }
 
-    public void setHeadquarter(Company headquarter) {
-        this.headquarter = headquarter;
+    public void setChildren(Set<Company> children) {
+        this.children = children;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "headquarter", fetch = FetchType.EAGER)
-    public Set<Company> getAffiliates() {
-        return affiliates;
-    }
-
-    public void setAffiliates(Set<Company> affiliates) {
-        this.affiliates = affiliates;
-    }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company")
     public Set<Department> getDepartments() {
         return departments;
     }
@@ -94,7 +85,7 @@ public class Company {
         this.departments = departments;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company")
     public Set<Post> getPosts() {
         return posts;
     }
@@ -103,7 +94,7 @@ public class Company {
         this.posts = posts;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company")
     public Set<User> getUsers() {
         return users;
     }
@@ -116,32 +107,16 @@ public class Company {
 
     }
 
-    public Company(String id, String name, String address, String phone, String describe, Company headquarter, Set<Company> affiliates, Set<Department> departments, Set<Post> posts, Set<User> users) {
-        this.id = id;
+    public Company(String name, String address, String comment) {
         this.name = name;
         this.address = address;
-        this.phone = phone;
-        this.describe = describe;
-        this.headquarter = headquarter;
-        this.affiliates = affiliates;
-        this.departments = departments;
-        this.posts = posts;
-        this.users = users;
+        this.comment = comment;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", describe='" + describe + '\'' +
-                ", headquarter=" + headquarter +
-                ", affiliates=" + affiliates +
-                ", departments=" + departments +
-                ", posts=" + posts +
-                ", users=" + users +
-                '}';
+    public Company(String name, String address, String comment, Company parent) {
+        this.name = name;
+        this.address = address;
+        this.comment = comment;
+        this.parent = parent;
     }
 }
