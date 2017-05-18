@@ -49,74 +49,20 @@
 </div>
 <div data-options="region:'west',split:true,title:'Menu'" style="width:15%;">
     <div class="easyui-accordion" data-options="multiple:true,selected:false" style="width: 100%;">
-        <div title="Chart">
+        <div title="Setting">
             <div class="easyui-panel" style="padding:5px">
-                <ul class="easyui-tree">
-                    <li><a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true"
-                           onclick="addCompany()">Company</a></li>
-                    <li>
-                        <span>My Documents</span>
-                        <ul>
-                            <li data-options="state:'closed'">
-                                <span>Photos</span>
-                                <ul>
-                                    <li>
-                                        <span>Friend</span>
-                                    </li>
-                                    <li>
-                                        <span>Wife</span>
-                                    </li>
-                                    <li>
-                                        <span>Company</span>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Program Files</span>
-                                <ul>
-                                    <li>Intel</li>
-                                    <li>Java</li>
-                                    <li>Microsoft Office</li>
-                                    <li>Games</li>
-                                </ul>
-                            </li>
-                            <li>index.html</li>
-                            <li>about.html</li>
-                            <li>welcome.html</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span>My Documents</span>
-                        <ul>
-                            <li data-options="state:'closed'">
-                                <span>Photos</span>
-                                <ul>
-                                    <li>
-                                        <span>Friend</span>
-                                    </li>
-                                    <li>
-                                        <span>Wife</span>
-                                    </li>
-                                    <li>
-                                        <span>Company</span>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Program Files</span>
-                                <ul>
-                                    <li>Intel</li>
-                                    <li>Java</li>
-                                    <li>Microsoft Office</li>
-                                    <li>Games</li>
-                                </ul>
-                            </li>
-                            <li>index.html</li>
-                            <li>about.html</li>
-                            <li>welcome.html</li>
-                        </ul>
-                    </li>
-                </ul>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
+                    Company
+                </a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
+                    Company
+                </a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
+                    Company
+                </a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
+                    Company
+                </a>
             </div>
             <script type="text/javascript">
                 var index = 0;
@@ -140,7 +86,7 @@
             </script>
         </div>
 
-        <div title="Setting">
+        <div title="asdfasdf">
             <div class="easyui-panel" style="padding:5px">
                 <ul class="easyui-tree">
                     <li><a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true"
@@ -210,7 +156,7 @@
                 </ul>
             </div>
         </div>
-        <div title="C#">
+        <div title="asdfasdf">
             <div class="easyui-panel" style="padding:5px">
                 <ul class="easyui-tree">
                     <li><a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true"

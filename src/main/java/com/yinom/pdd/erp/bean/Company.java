@@ -12,6 +12,7 @@ import java.util.Set;
 @Table(name = "tb_company")
 public class Company {
     private String id;
+    private String no;
     private String name;
     private String address;
     private String comment;
@@ -30,6 +31,14 @@ public class Company {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
     }
 
     public String getName() {
@@ -118,5 +127,17 @@ public class Company {
         this.address = address;
         this.comment = comment;
         this.parent = parent;
+    }
+
+    public Company(String no, String name, String address, String comment, Company parent, Set<Company> children, Set<Department> departments, Set<Post> posts, Set<User> users) {
+        this.no = no;
+        this.name = name;
+        this.address = address;
+        this.comment = comment;
+        this.parent = parent;
+        this.children = children;
+        this.departments = departments;
+        this.posts = posts;
+        this.users = users;
     }
 }

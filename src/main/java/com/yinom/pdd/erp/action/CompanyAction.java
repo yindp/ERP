@@ -42,7 +42,7 @@ public class CompanyAction extends ActionSupport implements ModelDriven {
         return company;
     }
 
-    @Action(value = "list", results = {@Result(name = "success", location = "/company.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "list", results = {@Result(name = "success", location = "/user/company.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String company() {
         companies = iCompanyService.queryAll(company);
         ActionContext.getContext().put("companies", companies);
