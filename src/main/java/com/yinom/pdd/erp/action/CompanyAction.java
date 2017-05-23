@@ -13,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by yindp on 5/4/2017.
@@ -49,11 +52,15 @@ public class CompanyAction extends ActionSupport implements ModelDriven {
         return SUCCESS;
     }
 
-    @Action(value = "add", results = {@Result(name = "success", location = "/success.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "add", results = {@Result(name = "success", location = "/company/list",type = "redirect"), @Result(name = "error", location = "/error.jsp")})
     public String add() {
         if (company.getParent().getId().equals("-1")) {
             company.setParent(null);
         }
+        Calendar c=Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String no = sdf.format(c.getTime());
+        company.setNo(no);
         iCompanyService.insert(company);
         return SUCCESS;
     }

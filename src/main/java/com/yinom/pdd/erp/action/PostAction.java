@@ -50,7 +50,7 @@ public class PostAction extends ActionSupport implements ModelDriven {
         return post;
     }
 
-    @Action(value = "list", results = {@Result(name = "success", location = "/post.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "list", results = {@Result(name = "success", location = "/user/post.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String Post() {
         companies = iCompanyService.queryAll(post.getCompany());
         departments = iDepartmentService.queryAll(post.getDepartment());
@@ -61,10 +61,16 @@ public class PostAction extends ActionSupport implements ModelDriven {
         return SUCCESS;
     }
 
-    @Action(value = "add", results = {@Result(name = "success", location = "/success.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "add", results = {@Result(name = "success", location = "/post/list",type = "redirect"), @Result(name = "error", location = "/error.jsp")})
     public String add() {
         if (post.getParent().getId().equals("-1")) {
             post.setParent(null);
+        }
+        if (post.getCompany().getId().equals("-1")) {
+            post.setCompany(null);
+        }
+        if (post.getDepartment().getId().equals("-1")) {
+            post.setDepartment(null);
         }
         iPostService.insert(post);
         return SUCCESS;

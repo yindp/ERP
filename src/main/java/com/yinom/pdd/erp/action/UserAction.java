@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,6 +39,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
     private List<Company> companies = new ArrayList<Company>();
     private List<Department> departments = new ArrayList<Department>();
     private List<Post> posts = new ArrayList<Post>();
+    private List<User> users = new ArrayList<User>();
 
     @Autowired
     private IUserService iUserService;
@@ -54,19 +57,33 @@ public class UserAction extends ActionSupport implements ModelDriven {
         return user;
     }
 
-    @Action(value = "list", results = {@Result(name = "success", location = "/user.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "list", results = {@Result(name = "success", location = "/user/user.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String User() {
         companies = iCompanyService.queryAll(user.getCompany());
         departments = iDepartmentService.queryAll(user.getDepartment());
         posts = iPostService.queryAll(user.getPost());
+        users = iUserService.queryAll(user);
         ActionContext.getContext().put("companies", companies);
         ActionContext.getContext().put("departments", departments);
         ActionContext.getContext().put("posts", posts);
         return SUCCESS;
     }
 
-    @Action(value = "add", results = {@Result(name = "success", location = "/success.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "add", results = {@Result(name = "success", location = "/user/list",type = "redirect"), @Result(name = "error", location = "/error.jsp")})
     public String add() {
+        if (user.getCompany().getId().equals("-1")) {
+            user.setCompany(null);
+        }
+        if (user.getDepartment().getId().equals("-1")) {
+            user.setDepartment(null);
+        }
+        if (user.getPost().getId().equals("-1")) {
+            user.setPost(null);
+        }
+        Calendar c=Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String no = sdf.format(c.getTime());
+        user.setNo(no);
         iUserService.insert(user);
         return SUCCESS;
     }
@@ -114,4 +131,11 @@ public class UserAction extends ActionSupport implements ModelDriven {
         this.companies = companies;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

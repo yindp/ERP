@@ -45,7 +45,7 @@ public class DepartmentAction extends ActionSupport implements ModelDriven {
         return department;
     }
 
-    @Action(value = "list", results = {@Result(name = "success", location = "/department.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "list", results = {@Result(name = "success", location = "/user/department.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String Department() {
         companies = iCompanyService.queryAll(department.getCompany());
         departments = iDepartmentService.queryAll(department);
@@ -54,10 +54,13 @@ public class DepartmentAction extends ActionSupport implements ModelDriven {
         return SUCCESS;
     }
 
-    @Action(value = "add", results = {@Result(name = "success", location = "/success.jsp"), @Result(name = "error", location = "/error.jsp")})
+    @Action(value = "add", results = {@Result(name = "success", location = "/department/list",type = "redirect"), @Result(name = "error", location = "/error.jsp")})
     public String add() {
         if (department.getParent().getId().equals("-1")) {
             department.setParent(null);
+        }
+        if (department.getCompany().getId().equals("-1")) {
+            department.setCompany(null);
         }
         iDepartmentService.insert(department);
         return SUCCESS;

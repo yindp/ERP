@@ -1,49 +1,45 @@
-<!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Full Layout - jQuery EasyUI Demo</title>
-    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5.2/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5.2/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5.2/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="/jquery-easyui-1.5.2/demo/demo.css">
-    <script type="text/javascript" src="/jquery-easyui-1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/jquery-easyui-1.5.2/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/jquery-easyui-1.5.2/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/jquery-easyui-1.5.2/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/jquery-easyui-1.5.2/demo/demo.css">
+    <script type="text/javascript" src="<%=path%>/jquery-easyui-1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',border:false" style="height:150px;background:#B3DFDA;padding:10px;">
-    <%--    <div class="easyui-panel">
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">Button 1</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1',selected:true">Button 2</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">Button 3</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">Button 4</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">Button 5</a>
-            <a href="#" class="easyui-linkbutton c1" style="width:120px">Button1</a>
-            <a href="#" class="easyui-linkbutton c2" style="width:120px">Button2</a>
-            <a href="#" class="easyui-linkbutton c3" style="width:120px">Button3</a>
-            <a href="#" class="easyui-linkbutton c4" style="width:120px">Button4</a>
-        </div>
-        <div class="easyui-panel">
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Button 1</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true,selected:true">Button
-                2</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Button 3</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Button 4</a>
-            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g2',plain:true">Button 5</a>
-            <a href="#" class="easyui-linkbutton c5" style="width:120px">Button5</a>
-            <a href="#" class="easyui-linkbutton c6" style="width:120px">Button6</a>
-            <a href="#" class="easyui-linkbutton c7" style="width:120px">Button7</a>
-            <a href="#" class="easyui-linkbutton c8" style="width:120px">Button8</a>
-        </div>--%>
     <div style="margin-top: 30px">
-        <label>Company ID :</label><input class="easyui-textbox" type="text">
-        <label>Employee ID :</label><input class="easyui-textbox" type="text">
-        <label>User Name :</label><input class="easyui-textbox" type="text">
-        <label>Phone :</label><input class="easyui-textbox" type="text">
-        <label>Email :</label><input class="easyui-textbox" type="text">
-        <input class="easyui-linkbutton" type="button" value="Search">
+        <label>Company NO :</label><input id="companyNO" class="easyui-textbox" type="text" name="company.no">
+        <label>Employee NO :</label><input id="userNo" class="easyui-textbox" type="text" name="user.no">
+        <label>User Name :</label><input id="userName" class="easyui-textbox" type="text" name="user.name">
+        <label>Phone :</label><input id="userPhone" class="easyui-textbox" type="text" name="user.phone">
+        <label>Email :</label><input id="userEmail" class="easyui-textbox" type="text" name="user.email">
+        <input class="easyui-linkbutton" type="button" value="Search" id="query">
     </div>
-    <div style="background: white;height: 50px;margin-top: 10px">
+    <script>
+        $(document).ready(function () {
+            $("#query").click(function () {
+                $.ajax({
+                    url: "admin/query",
+                    type: 'POST',
+                    data: "{}",
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Success!")
+                    }
+                });
+            });
+        });
+    </script>
+    <div id="queryResult" style="background: white;height: 50px;margin-top: 10px">
         <h1 style="text-align: center">Search result box</h1>
     </div>
 </div>
@@ -51,17 +47,21 @@
     <div class="easyui-accordion" data-options="multiple:true,selected:false" style="width: 100%;">
         <div title="Setting">
             <div class="easyui-panel" style="padding:5px">
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()"
+                   style="width: 100%">
                     Company
                 </a>
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
-                    Company
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true"
+                   onclick="addDepartment()" style="width: 100%">
+                    Department
                 </a>
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
-                    Company
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addPost()"
+                   style="width: 100%">
+                    Post
                 </a>
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addCompany()" style="width: 100%">
-                    Company
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="addUser()"
+                   style="width: 100%">
+                    User
                 </a>
             </div>
             <script type="text/javascript">
@@ -71,7 +71,37 @@
                     $('#tt').tabs('add', {
                         title: 'Company' + index,
                         /* content: '<div style="padding:10px">Content'+index+'</div>',*/
-                        content: '<iframe name="test" src="/company/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        content: '<iframe name="test" src="<%=path%>/company/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        closable: true,//tab显示关闭键
+                        cache: true
+                    });
+                }
+                function addDepartment() {
+                    index++;
+                    $('#tt').tabs('add', {
+                        title: 'Department' + index,
+                        /* content: '<div style="padding:10px">Content'+index+'</div>',*/
+                        content: '<iframe name="test" src="<%=path%>/department/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        closable: true,//tab显示关闭键
+                        cache: true
+                    });
+                }
+                function addPost() {
+                    index++;
+                    $('#tt').tabs('add', {
+                        title: 'Post' + index,
+                        /* content: '<div style="padding:10px">Content'+index+'</div>',*/
+                        content: '<iframe name="test" src="<%=path%>/post/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        closable: true,//tab显示关闭键
+                        cache: true
+                    });
+                }
+                function addUser() {
+                    index++;
+                    $('#tt').tabs('add', {
+                        title: 'User' + index,
+                        /* content: '<div style="padding:10px">Content'+index+'</div>',*/
+                        content: '<iframe name="test" src="<%=path%>/user/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
                         closable: true,//tab显示关闭键
                         cache: true
                     });

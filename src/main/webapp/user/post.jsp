@@ -23,10 +23,6 @@
 </head>
 <body>
 <div id="toolbar">
-    <%-- <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-        onclick="javascript:$('#dg').edatagrid('addRow')">New</a>--%>
-<%--    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-       onclick="$('#dlg').dialog('open')">New</a>--%>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="$('#w').window('open')">New</a>
     <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
        onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
@@ -36,28 +32,24 @@
        onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
 </div>
 <div>
-    <table class="easyui-datagrid" title="Company" style="height:250px"
+    <table class="easyui-datagrid" title="Post" style="height:250px"
            data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
         <thead>
         <tr>
-            <th data-options="field:'itemits',align:'center'">Service ID</th>
-            <th data-options="field:'itemid',align:'center'">Name</th>
-            <th data-options="field:'productid',align:'center'">Address</th>
-            <th data-options="field:'listprice',align:'center'">Contact</th>
-            <th data-options="field:'unitcost',align:'center'">Phone</th>
-            <th data-options="field:'attr1',align:'center'">Start Time</th>
-            <th data-options="field:'status',align:'center'">End Time</th>
+            <th data-options="field:'itemits',align:'center'">Company</th>
+            <th data-options="field:'itemid',align:'center'">Department</th>
+            <th data-options="field:'unitcost',align:'center'">Parent</th>
+            <th data-options="field:'unitcost',align:'center'">Name</th>
+            <th data-options="field:'attr1',align:'center'">Comment</th>
         </tr>
         </thead>
-        <s:iterator value="companies">
+        <s:iterator value="posts">
             <tr>
-                <td><s:property value="no"/> </td>
+                <td><s:property value="company.name"/> </td>
+                <td><s:property value="department.name"/> </td>
+                <td><s:property value="parent.name"/> </td>
                 <td><s:property value="name"/> </td>
-                <td><s:property value="address"/> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><s:property value="comment"/> </td>
             </tr>
         </s:iterator>
 
@@ -67,13 +59,17 @@
     </div>
 </div>
 <div>
-    <div id="w" class="easyui-window" title="Add a company" data-options="modal:true,closed:true"
+    <div id="w" class="easyui-window" title="Add a post" data-options="modal:true,closed:true"
          style="width:auto;height:auto;padding:10px;">
-        <s:form action="/company/add" method="POST" id="addCompany">
+        <s:form action="/post/add" method="POST">
             <%-- <s:select list="headquarters" listValue="" listKey="" name="" id="" headerKey="" headerValue=""/>--%>
-            <s:select label="Company" list="#companies" listKey="id" listValue="name" headerKey="-1" headerValue="Null"  name="parent.id"/>
+            <s:select label="Company" list="#companies" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
+                      name="company.id"/>
+            <s:select label="Department" list="#departments" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
+                      name="department.id"/>
+            <s:select label="Post" list="#posts" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
+                      name="parent.id"/>
             <s:textfield label="Name" name="name"/>
-            <s:textarea label="Address" name="address"/>
             <s:textarea label="Comment" name="comment"/>
             <s:submit value="Submit" id="formSubmit" cssStyle="display: none"/>
         </s:form>

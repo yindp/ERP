@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "tb_user")
 public class User {
     private String id;
+    private String no;
     private String name;
     private String password;
     private String phone;
@@ -28,6 +29,14 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
     }
 
     public String getName() {
