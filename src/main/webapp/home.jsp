@@ -17,14 +17,81 @@
 <body class="easyui-layout">
 <div data-options="region:'north',border:false" style="height:150px;background:#B3DFDA;padding:10px;">
     <div style="margin-top: 30px">
-        <label>Company NO :</label><input id="companyNO" class="easyui-textbox" type="text" name="company.no">
-        <label>Employee NO :</label><input id="userNo" class="easyui-textbox" type="text" name="user.no">
-        <label>User Name :</label><input id="userName" class="easyui-textbox" type="text" name="user.name">
-        <label>Phone :</label><input id="userPhone" class="easyui-textbox" type="text" name="user.phone">
-        <label>Email :</label><input id="userEmail" class="easyui-textbox" type="text" name="user.email">
-        <input class="easyui-linkbutton" type="button" value="Search" id="query">
+        <form action="#" method="post">
+            <label>Company NO :</label><input id="companyNO" class="easyui-textbox" type="text" name="company.no">
+            <label>Employee NO :</label><input id="userNo" class="easyui-textbox" type="text" name="user.no">
+            <label>User Name :</label><input id="userName" class="easyui-textbox" type="text" name="user.name">
+            <label>Phone :</label><input id="userPhone" class="easyui-textbox" type="text" name="user.phone">
+            <label>Email :</label><input id="userEmail" class="easyui-textbox" type="text" name="user.email">
+            <input class="easyui-linkbutton" type="button" value="Search" id="query">
+        </form>
     </div>
-    <script>
+    <script type="text/javascript">
+
+        /* 提交结果，执行ajax */
+
+        function btn() {
+
+            var $btn = $("#query");//获取按钮元素
+
+            //给按钮绑定点击事件
+
+            $btn.bind("click", function () {
+
+                $.ajax({
+
+                    type: "post",
+
+                    url: "admin/query",//需要用来处理ajax请求的action,excuteAjax为处理的方法名，JsonAction为action名
+
+                    data: {//设置数据源
+
+                        companyNO: $("#companyNO").val(),
+                        userNO: $("#userNo").val(),
+                        name: $("#userName").val(),
+                        phone: $("#userPhone").val(),
+                        email: $("#userEmail").val()
+                        //这里不要加","  不然会报错，而且根本不会提示错误地方
+                    },
+
+                    dataType: "json",//设置需要返回的数据类型
+
+                    success: function (data) {
+
+                        var d = eval("(" + data + ")");//将数据转换成json类型，可以把data用alert()输出出来看看到底是什么样的结构
+      /*                  alert(data);*/
+                        //得到的d是一个形如{"key":"value","key1":"value1"}的数据类型，然后取值出来
+                        $("#resultNo").text("" + d.no + "");
+                        $("#resultName").text("" + d.name + "");
+                        $("#resultCompany").text("" + d.company+ "");
+                        $("#resultDepartment").text("" + d.department+ "");
+                        $("#resultPhone").text("" + d.phone + "");
+                        $("#resultEmail").text("" + d.email + "");
+                    },
+
+                    error: function () {
+
+                        alert("系统异常，请稍后重试！");
+
+                    }//这里不要加","
+
+                });
+
+            });
+
+        }
+
+
+        /* 页面加载完成，绑定事件 */
+
+        $(document).ready(function () {
+
+            btn();//点击提交，执行ajax
+
+        });
+
+    </script>
+    <%--<script>
         $(document).ready(function () {
             $("#query").click(function () {
                 $.ajax({
@@ -38,9 +105,28 @@
                 });
             });
         });
-    </script>
-    <div id="queryResult" style="background: white;height: 50px;margin-top: 10px">
-        <h1 style="text-align: center">Search result box</h1>
+    </script>--%>
+    <div id="queryResult" style="background: white;margin-top: 5px">
+        <table border="1" cellspacing="2" id="queryUser">
+            <thead>
+            <tr>
+                <th>Service NO</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Department</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tr>
+                <td id="resultNo"></td>
+                <td id="resultName"></td>
+                <td id="resultCompany"></td>
+                <td id="resultDepartment"></td>
+                <td id="resultPhone"></td>
+                <td id="resultEmail"></td>
+            </tr>
+        </table>
     </div>
 </div>
 <div data-options="region:'west',split:true,title:'Menu'" style="width:15%;">
@@ -113,6 +199,9 @@
                         $('#tt').tabs('close', index);
                     }
                 }
+                $("table tr").bind("click", function () {
+                    addPanel();
+                })
             </script>
         </div>
 
@@ -120,7 +209,7 @@
             <div class="easyui-panel" style="padding:5px">
                 <ul class="easyui-tree">
                     <li><a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true"
-                           onclick="addPanel()">New Ticket</a></li>
+                           onclick="f()">New Ticket</a></li>
                     <li>
                         <span>My Documents</span>
                         <ul>

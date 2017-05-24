@@ -7,6 +7,7 @@
           <element id="module-output" name="ERP" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.0" />
           <element id="library" level="project" name="Maven: com.jgeppert.struts2.jquery:struts2-jquery-plugin:3.7.1" />
           <element id="library" level="project" name="Maven: org.apache.velocity:velocity:1.5" />
           <element id="library" level="project" name="Maven: oro:oro:2.0.8" />

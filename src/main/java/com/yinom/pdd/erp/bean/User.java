@@ -71,7 +71,7 @@ public class User {
         this.email = email;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     public Company getCompany() {
         return company;
@@ -81,7 +81,7 @@ public class User {
         this.company = company;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     public Department getDepartment() {
         return department;
@@ -91,7 +91,7 @@ public class User {
         this.department = department;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     public Post getPost() {
         return post;
