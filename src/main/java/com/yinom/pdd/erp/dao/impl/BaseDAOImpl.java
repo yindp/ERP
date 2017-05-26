@@ -88,4 +88,10 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
         }
         return query.setFirstResult((pageNo - 1) * pageSize).setMaxResults(pageSize).list();
     }
+
+    public List<T> queryAll(String hql) {
+        Query query = getSession().createQuery(hql);
+
+        return  query.list();
+    }
 }

@@ -17,16 +17,41 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!-- struts2 -->
     <filter>
         <display-name>StrutsPrepareAndExecuteFilter</display-name>
         <filter-name>StrutsPrepareAndExecuteFilter</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
+    <!-- spring 整合struts2 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- Spring提供的避免Hibernate懒加载异常的过滤器让Session在请求解释完成之后再关闭，从而避免懒加载异常 -->
+    <filter>
+        <filter-name>Spring OpenSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+       <!-- <init-param>
+            &lt;!&ndash;
+            指定org.springframework.orm.hibernate3.LocalSessionFactoryBean在spring配置文件中的名称,默认值为sessionFactory
+                 如果LocalSessionFactoryBean在spring中的名称不是sessionFactory,该参数一定要指定,否则会出现找不到sessionFactory的例外
+            &ndash;&gt;
+            <param-name>sessionFactory</param-name>
+            <param-value>sessionFactory</param-value>
+        </init-param>-->
+
+    </filter>
+    <!-- 以下2个mapping不可以调换位置 -->
+
+    <filter-mapping>
+        <filter-name>Spring OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>StrutsPrepareAndExecuteFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
 </web-app>

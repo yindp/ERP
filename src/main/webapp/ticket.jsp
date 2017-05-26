@@ -24,10 +24,6 @@
     <table cellspacing="15px">
 
         <tr>
-            <td><s:label>Number :</s:label></td>
-            <td><s:textfield/></td>
-            <td><s:label>Time :</s:label></td>
-            <td><s:textfield/></td>
             <td><s:label>Type :</s:label></td>
             <td>
                 <select class="easyui-combobox" name="state" style="width:100%;">
@@ -46,13 +42,14 @@
         </tr>
         <tr>
             <td><s:label>Employee ID :</s:label></td>
-            <td><s:textfield/></td>
+            <td><s:property value="user.no"/> </td>
             <td><s:label>Name :</s:label></td>
-            <td><s:textfield/></td>
+   <%--         <td><s:textfield/></td>--%>
+            <td><s:property value="user.name"/> </td>
             <td><s:label>Phone :</s:label></td>
-            <td><s:textfield/></td>
+            <td><s:property value="user.phone"/> </td>
             <td><s:label>Email :</s:label></td>
-            <td><s:textfield/></td>
+            <td><s:property value="user.email"/> </td>
         </tr>
         <tr>
             <td><s:label>Region :</s:label></td>
@@ -66,11 +63,11 @@
         </tr>
         <tr>
             <td><s:label>Company :</s:label></td>
-            <td><s:textfield/></td>
+            <td><s:property value="user.company.name"/> </td>
             <td><s:label>Company Code :</s:label></td>
             <td><s:textfield/></td>
             <td><s:label>Department :</s:label></td>
-            <td><s:textfield/></td>
+            <td><s:property value="user.department.name"/> </td>
             <td><s:label>Cost Center :</s:label></td>
             <td><s:textfield/></td>
         </tr>
@@ -335,5 +332,6 @@
     <hr>
     <s:submit value="Submit"/><s:submit value="Assign"/>
 </s:form>
+<s:debug/>
 </body>
 </html>

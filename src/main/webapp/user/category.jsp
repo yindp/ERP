@@ -32,50 +32,35 @@
        onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
 </div>
 <div>
-    <table class="easyui-datagrid" title="User" style="height:250px"
+    <table class="easyui-datagrid" title="Category" style="height:250px"
            data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
         <thead>
         <tr>
-            <th data-options="field:'no',align:'center'">Service NO</th>
             <th data-options="field:'name',align:'center'">Name</th>
-            <th data-options="field:'company',align:'center'">Company</th>
-            <th data-options="field:'department',align:'center'">Department</th>
-            <th data-options="field:'post',align:'center'">Post</th>
-            <th data-options="field:'phone',align:'center'">Phone</th>
-            <th data-options="field:'email',align:'center'">Email</th>
+            <th data-options="field:'parentName',align:'center'">Parent</th>
+
         </tr>
         </thead>
-        <s:iterator value="users" var="u">
+        <s:iterator value="categories">
             <tr>
-                <td><s:property value="#u.no"/> </td>
-                <td><s:property value="#u.name"/> </td>
-                <td><s:property value="#u.company.name"/> </td>
-                <td><s:property value="#u.department.name"/> </td>
-                <td><s:property value="#u.post.name"/> </td>
-                <td><s:property value="#u.phone"/> </td>
-                <td><s:property value="#u.email"/> </td>
+                <td><s:property value="name"/> </td>
+                <td><s:property value="parent.name"/> </td>
             </tr>
         </s:iterator>
+
     </table>
     <div class="easyui-panel">
         <div class="easyui-pagination" data-options="total:114"></div>
     </div>
 </div>
 <div>
-    <div id="w" class="easyui-window" title="Add a company" data-options="modal:true,closed:true"
+    <div id="w" class="easyui-window" title="Add a post" data-options="modal:true,closed:true"
          style="width:auto;height:auto;padding:10px;">
-        <s:form action="/user/add" method="POST" id="formUser">
-            <s:select label="Company" list="#companies" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
-                      name="company.id"/>
-            <s:select label="Department" list="#departments" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
-                      name="department.id"/>
-            <s:select label="Post" list="#posts" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
-                      name="post.id"/>
+        <s:form action="/admin/addCategory" method="POST">
+
+            <s:select label="Parent" list="#categories" listKey="id" listValue="name" headerKey="-1" headerValue="Null"
+                      name="parent.id"/>
             <s:textfield label="Name" name="name"/>
-            <s:textfield label="Password" name="password"/>
-            <s:textfield label="Phone" name="phone"/>
-            <s:textfield label="Email" name="email"/>
-            <s:textarea label="Comment" name="comment"/>
             <s:submit value="Submit" id="formSubmit" cssStyle="display: none"/>
         </s:form>
         <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">

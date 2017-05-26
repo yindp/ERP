@@ -18,6 +18,7 @@ public interface IBaseDAO<T> {
     T query(Class<T> entityClazz, Serializable id);
 
     List<T> queryAll(String hql, Object... params);
+    List<T> queryAll(String hql);
     T query(String hql, Object... params);
 
     // 保存实体

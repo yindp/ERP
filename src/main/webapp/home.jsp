@@ -149,6 +149,10 @@
                    style="width: 100%">
                     User
                 </a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="Category()"
+                   style="width: 100%">
+                    Category
+                </a>
             </div>
             <script type="text/javascript">
                 var index = 0;
@@ -192,6 +196,16 @@
                         cache: true
                     });
                 }
+                function Category() {
+                    index++;
+                    $('#tt').tabs('add', {
+                        title: 'Category' + index,
+                        /* content: '<div style="padding:10px">Content'+index+'</div>',*/
+                        content: '<iframe name="test" src="<%=path%>/admin/queryCategoryALL" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        closable: true,//tab显示关闭键
+                        cache: true
+                    });
+                }
                 function removePanel() {
                     var tab = $('#tt').tabs('getSelected');
                     if (tab) {
@@ -200,7 +214,8 @@
                     }
                 }
                 $("table tr").bind("click", function () {
-                    addPanel();
+                    var b=document.getElementById("resultNo").innerHTML;
+                    addPanel(b);
                 })
             </script>
         </div>
@@ -504,12 +519,13 @@
     </div>
     <script type="text/javascript">
         var index = 0;
-        function addPanel() {
+        function addPanel(a) {
             index++;
             $('#tt').tabs('add', {
                 title: 'Ticket' + index,
                 /* content: '<div style="padding:10px">Content'+index+'</div>',*/
-                content: '<iframe name="test" src="ticket.jsp" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                /*content: '<iframe name="test" src="ticket.jsp" frameborder="0" style="height:100%;width:100%;" "></iframe>', */
+                content: '<iframe name="test" src="<%=path%>/admin/newTicket?user.no='+a+'" frameborder="0" style="height:100%;width:100%;" "></iframe>',
                 closable: true,//tab显示关闭键
                 cache: true
             });
