@@ -23,7 +23,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#myTree').tree({
-            url: "<%=path%>/admin/treeLoad",
+            url: "<%=path%>/test/treeLoad",
             checkbox:true,
             loadFilter: function(data){
                 if (data.treeNodes){
@@ -35,8 +35,14 @@
         });
     });
 </script>
+<%--<script type="text/javascript">
+    $('#mytree').tree({
+        url:'test/treeLoad'
+    });
+</script>--%>
 <div>
     <ul id="myTree" class="easyui-tree"></ul>
+      <%-- <ul id="mytree"></ul>--%>
 </div>
 </body>
 </html>
