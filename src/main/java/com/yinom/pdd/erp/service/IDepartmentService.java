@@ -1,5 +1,6 @@
 package com.yinom.pdd.erp.service;
 
+import com.yinom.pdd.erp.bean.Category;
 import com.yinom.pdd.erp.bean.Department;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface IDepartmentService {
     void insert(Department department);
     List<Department> queryAll(Department department);
+    List<Department> queryAll(String hql, Object... params);
 }

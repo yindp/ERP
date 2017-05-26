@@ -24,4 +24,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
     public List<Department> queryAll(Department department) {
         return iDepartmentDAO.queryAll(Department.class);
     }
+
+    public List<Department> queryAll(String hql, Object... params) {
+        return iDepartmentDAO.queryAll(hql,params);
+    }
 }
