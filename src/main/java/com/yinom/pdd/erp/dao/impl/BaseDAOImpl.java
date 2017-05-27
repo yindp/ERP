@@ -96,4 +96,8 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
 
         return  query.list();
     }
+
+    public long queryCount(String hql, Object... params) {
+        return 0;
+    }
 }

@@ -9,5 +9,14 @@ import java.util.List;
  */
 public interface ICompanyService {
     void insert(Company company);
+
+    void delete(Company company);
+
+    void update(Company company);
+
+    Company query(String hql, Object... params);
+
+    List<Company> queryByPage(String hql, Object... params);
+
     List<Company> queryAll(Company company);
 }

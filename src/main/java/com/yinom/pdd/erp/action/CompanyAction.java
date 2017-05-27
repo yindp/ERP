@@ -64,6 +64,26 @@ public class CompanyAction extends ActionSupport implements ModelDriven {
         iCompanyService.insert(company);
         return SUCCESS;
     }
+    public String insert() {
+        iCompanyService.insert(company);
+        return SUCCESS;
+    }
+    public String delete() {
+        return SUCCESS;
+    }
+    public String update() {
+        return SUCCESS;
+    }
+    public String query() {
+        return SUCCESS;
+    }
+    public String queryByPage() {
+        return SUCCESS;
+    }
+    public String queryAll() {
+        return SUCCESS;
+    }
+
 
 
     public Company getCompany() {
