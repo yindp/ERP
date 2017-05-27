@@ -63,6 +63,18 @@ public class IncidentCategory {
         this.childrenCategoryList = childrenCategoryList;
     }
 
+    public IncidentCategory() {
+
+    }
+
+    public IncidentCategory(String id, String name, String comment, IncidentCategory parentCategory, List<IncidentCategory> childrenCategoryList) {
+        this.id = id;
+        this.name = name;
+        this.comment = comment;
+        this.parentCategory = parentCategory;
+        this.childrenCategoryList = childrenCategoryList;
+    }
+
     @Override
     public String toString() {
         return "IncidentCategory{" +

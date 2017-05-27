@@ -13,7 +13,9 @@ import java.util.Set;
 public class Company {
     private String id;
     private String no;
-    private String name;
+    private String shortName;
+    private String fullName;
+    private Location location;
     private String address;
     private String comment;
     private Company parent;
@@ -41,12 +43,28 @@ public class Company {
         this.no = no;
     }
 
-    public String getName() {
-        return name;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getAddress() {
@@ -116,22 +134,11 @@ public class Company {
 
     }
 
-    public Company(String name, String address, String comment) {
-        this.name = name;
-        this.address = address;
-        this.comment = comment;
-    }
-
-    public Company(String name, String address, String comment, Company parent) {
-        this.name = name;
-        this.address = address;
-        this.comment = comment;
-        this.parent = parent;
-    }
-
-    public Company(String no, String name, String address, String comment, Company parent, Set<Company> children, Set<Department> departments, Set<Post> posts, Set<User> users) {
+    public Company(String id, String no, String shortName, String fullName, String address, String comment, Company parent, Set<Company> children, Set<Department> departments, Set<Post> posts, Set<User> users) {
+        this.id = id;
         this.no = no;
-        this.name = name;
+        this.shortName = shortName;
+        this.fullName = fullName;
         this.address = address;
         this.comment = comment;
         this.parent = parent;

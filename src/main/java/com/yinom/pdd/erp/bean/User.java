@@ -14,8 +14,10 @@ public class User {
     private String no;
     private String name;
     private String password;
-    private String phone;
+    private String fixedPhone;
+    private String cellPhone;
     private String email;
+    private String comment;
     private Company company;
     private Department department;
     private Post post;
@@ -55,12 +57,20 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getFixedPhone() {
+        return fixedPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setFixedPhone(String fixedPhone) {
+        this.fixedPhone = fixedPhone;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
     }
 
     public String getEmail() {
@@ -69,6 +79,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

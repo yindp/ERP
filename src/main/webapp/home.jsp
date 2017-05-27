@@ -91,21 +91,7 @@
         });
 
     </script>
-    <%--<script>
-        $(document).ready(function () {
-            $("#query").click(function () {
-                $.ajax({
-                    url: "admin/query",
-                    type: 'POST',
-                    data: "{}",
-                    dataType: 'json',
-                    success: function (data) {
-                        alert("Success!")
-                    }
-                });
-            });
-        });
-    </script>--%>
+
     <div id="queryResult" style="background: white;margin-top: 5px">
         <table border="1" cellspacing="2" id="queryUser">
             <thead>
@@ -152,6 +138,10 @@
                 <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="Category()"
                    style="width: 100%">
                     Category
+                </a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="incidentCategory()"
+                   style="width: 100%">
+                    Incident Category
                 </a>
             </div>
             <script type="text/javascript">
@@ -202,6 +192,16 @@
                         title: 'Category' + index,
                         /* content: '<div style="padding:10px">Content'+index+'</div>',*/
                         content: '<iframe name="test" src="<%=path%>/admin/queryCategoryALL" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        closable: true,//tab显示关闭键
+                        cache: true
+                    });
+                }
+                function incidentCategory() {
+                    index++;
+                    $('#tt').tabs('add', {
+                        title: 'Incident Category' + index,
+                        /* content: '<div style="padding:10px">Content'+index+'</div>',*/
+                        content: '<iframe name="test" src="<%=path%>/admin/incidentCategory/queryAll" frameborder="0" style="height:100%;width:100%;" "></iframe>',
                         closable: true,//tab显示关闭键
                         cache: true
                     });
