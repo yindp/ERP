@@ -1,14 +1,14 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.Post;
-import com.yinom.pdd.erp.dao.IPostDAO;
+import com.yinom.pdd.erp.dao.PostDAO;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 @Repository(value = "iPostDAO")
-public class PostDAOImpl extends BaseDAOImpl<Post> implements IPostDAO {
+public class PostDAOImpl extends BaseDAOImpl<Post> implements PostDAO {
 /*
     @Autowired
     private SessionFactory sessionFactory;

@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.service.impl;
 
 import com.yinom.pdd.erp.bean.IncidentCategory;
@@ -8,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
+ *//*
+
 
 @Service(value = "incidentCategoryService")
 public class IncidentCategoryServiceImpl implements IncidentCategoryService {
@@ -33,3 +36,4 @@ public class IncidentCategoryServiceImpl implements IncidentCategoryService {
         return incidentCategoryDAO.query(hql, params);
     }
 }
+*/

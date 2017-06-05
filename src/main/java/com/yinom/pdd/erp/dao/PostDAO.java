@@ -1,12 +1,12 @@
 package com.yinom.pdd.erp.dao;
 
-import com.yinom.pdd.erp.bean.User;
+import com.yinom.pdd.erp.bean.Post;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 
-public interface IUserDAO extends IBaseDAO<User> {
+public interface PostDAO extends BaseDAO<Post> {
    /* void insert(Company company);
 
     List<Company> queryAll();

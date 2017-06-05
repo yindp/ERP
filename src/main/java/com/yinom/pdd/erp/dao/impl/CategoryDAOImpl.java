@@ -1,16 +1,14 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.Category;
-import com.yinom.pdd.erp.bean.User;
-import com.yinom.pdd.erp.dao.ICategoryDAO;
-import com.yinom.pdd.erp.dao.IUserDAO;
+import com.yinom.pdd.erp.dao.CategoryDAO;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 @Repository(value = "iCategoryDAO")
-public class CategoryDAOImpl extends BaseDAOImpl<Category> implements ICategoryDAO {
+public class CategoryDAOImpl extends BaseDAOImpl<Category> implements CategoryDAO {
 /*
     @Autowired
     private SessionFactory sessionFactory;

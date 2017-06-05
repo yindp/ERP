@@ -1,14 +1,14 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.User;
-import com.yinom.pdd.erp.dao.IUserDAO;
+import com.yinom.pdd.erp.dao.UserDAO;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 @Repository(value = "iUserDAO")
-public class UserDAOImpl extends BaseDAOImpl<User> implements IUserDAO {
+public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO {
 /*
     @Autowired
     private SessionFactory sessionFactory;

@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -7,7 +8,7 @@ import com.yinom.pdd.erp.bean.Company;
 import com.yinom.pdd.erp.bean.Department;
 import com.yinom.pdd.erp.bean.Post;
 import com.yinom.pdd.erp.bean.User;
-import com.yinom.pdd.erp.service.ICompanyService;
+import com.yinom.pdd.erp.service.CompanyService;
 import com.yinom.pdd.erp.service.IDepartmentService;
 import com.yinom.pdd.erp.service.IPostService;
 import com.yinom.pdd.erp.service.IUserService;
@@ -24,14 +25,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-/**
+*
  * Created by yindp on 5/4/2017.
- */
+
+
 @Namespace(value = "/user")
 @Scope(value = "prototype")
 @Controller(value = "userAction")
 @ParentPackage(value = "struts-default")
-/*@ParentPackage(value = "need-login")*/
+@ParentPackage(value = "need-login")
+
 //@InterceptorRef(value = "myDefaultStack")
 public class UserAction extends ActionSupport implements ModelDriven {
 
@@ -44,7 +47,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
     @Autowired
     private IUserService iUserService;
     @Autowired
-    private ICompanyService iCompanyService;
+    private CompanyService companyService;
     @Autowired
     private IDepartmentService iDepartmentService;
     @Autowired
@@ -59,7 +62,7 @@ public class UserAction extends ActionSupport implements ModelDriven {
 
     @Action(value = "list", results = {@Result(name = "success", location = "/user/user.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String User() {
-        companies = iCompanyService.queryAll(user.getCompany());
+        companies = companyService.queryAll(user.getCompany());
         departments = iDepartmentService.queryAll(user.getDepartment());
         posts = iPostService.queryAll(user.getPost());
         users = iUserService.queryAll(user);
@@ -139,3 +142,4 @@ public class UserAction extends ActionSupport implements ModelDriven {
         this.users = users;
     }
 }
+*/

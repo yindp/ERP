@@ -1,12 +1,12 @@
 package com.yinom.pdd.erp.dao;
 
-import com.yinom.pdd.erp.bean.Post;
+import com.yinom.pdd.erp.bean.Menu;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 
-public interface IPostDAO extends IBaseDAO<Post> {
+public interface MenuDAO extends BaseDAO<Menu> {
    /* void insert(Company company);
 
     List<Company> queryAll();

@@ -12,17 +12,21 @@ import java.util.Set;
 @Table(name = "tb_company")
 public class Company {
     private String id;
-    private String no;
-    private String shortName;
-    private String fullName;
-    private Location location;
+    private String esc;//Express service code
+    private String name;
+    private String pinyin;
     private String address;
     private String comment;
-    private Company parent;
-    private Set<Company> children;
-    private Set<Department> departments;
-    private Set<Post> posts;
-    private Set<User> users;
+
+    private transient Company parent;
+
+    private transient Set<Company> children;
+
+    private transient Set<Department> departments;
+
+    private transient Set<Post> posts;
+
+    private transient Set<User> users;
 
     @GenericGenerator(name = "g", strategy = "uuid")
     @GeneratedValue(generator = "g")
@@ -35,36 +39,28 @@ public class Company {
         this.id = id;
     }
 
-    public String getNo() {
-        return no;
+    public String getEsc() {
+        return esc;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setEsc(String esc) {
+        this.esc = esc;
     }
 
-    public String getShortName() {
-        return shortName;
+    public String getName() {
+        return name;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getPinyin() {
+        return pinyin;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setPinyin(String pinyin) {
+        this.pinyin = pinyin;
     }
 
     public String getAddress() {
@@ -134,17 +130,20 @@ public class Company {
 
     }
 
-    public Company(String id, String no, String shortName, String fullName, String address, String comment, Company parent, Set<Company> children, Set<Department> departments, Set<Post> posts, Set<User> users) {
-        this.id = id;
-        this.no = no;
-        this.shortName = shortName;
-        this.fullName = fullName;
-        this.address = address;
-        this.comment = comment;
-        this.parent = parent;
-        this.children = children;
-        this.departments = departments;
-        this.posts = posts;
-        this.users = users;
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id='" + id + '\'' +
+                ", esc='" + esc + '\'' +
+                ", name='" + name + '\'' +
+                ", pinyin='" + pinyin + '\'' +
+                ", address='" + address + '\'' +
+                ", comment='" + comment + '\'' +
+                ", parent=" + parent +
+                ", children=" + children +
+                ", departments=" + departments +
+                ", posts=" + posts +
+                ", users=" + users +
+                '}';
     }
 }

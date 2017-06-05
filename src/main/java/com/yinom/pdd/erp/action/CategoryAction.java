@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -17,14 +18,18 @@ import org.springframework.stereotype.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
+ *//*
+
 @Namespace(value = "/admin")
 @Scope(value = "prototype")
 @Controller(value = "categoryAction")
 @ParentPackage(value = "struts-default")
-/*@ParentPackage(value = "need-login")*/
+*/
+/*@ParentPackage(value = "need-login")*//*
+
 //@InterceptorRef(value = "myDefaultStack")
 public class CategoryAction extends ActionSupport implements ModelDriven {
     private Category category;
@@ -71,3 +76,4 @@ public class CategoryAction extends ActionSupport implements ModelDriven {
         this.categories = categories;
     }
 }
+*/

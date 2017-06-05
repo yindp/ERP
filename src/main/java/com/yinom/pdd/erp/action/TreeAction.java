@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,9 +18,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by yindp on 5/26/17.
- */
+ *//*
+
 @Namespace(value = "/test")
 @Scope(value = "prototype")
 @Controller(value = "treeAction")
@@ -69,11 +72,13 @@ public class TreeAction extends ActionSupport {
         return SUCCESS;
     }
 
-    /**
+    */
+/**
      * 判断是否有子节点
      *
      * @return
-     */
+     *//*
+
     public boolean isChildrenNode(String id) {
         Boolean flag = false;
         Statement sta = null;
@@ -111,3 +116,4 @@ public class TreeAction extends ActionSupport {
         this.id = id;
     }
 }
+*/

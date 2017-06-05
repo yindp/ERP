@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by yindp on 5/4/2017.
  */
-public interface IBaseDAO<T> {
+public interface IBaseDAO_backup<T> {
 
 
     // 根据ID加载实体

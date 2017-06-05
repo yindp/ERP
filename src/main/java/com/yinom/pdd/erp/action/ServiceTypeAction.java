@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -20,9 +21,11 @@ import org.springframework.stereotype.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
+ *//*
+
 @Namespace(value = "/admin/serviceType")
 @Scope(value = "prototype")
 @Controller(value = "serviceTypeAction")
@@ -86,3 +89,4 @@ public class ServiceTypeAction extends ActionSupport implements ModelDriven {
         this.treeNodeList = treeNodeList;
     }
 }
+*/

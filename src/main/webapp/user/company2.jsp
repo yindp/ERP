@@ -38,8 +38,7 @@
         <div id="toolbar">
             <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove
-                User</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
         </div>
     </div>
     <div>
@@ -70,7 +69,7 @@
                                    style="height:60px"></input></td>
                     </tr>
                 </table>
-                <%--  <s:submit value="Submit" id="formSubmit" cssStyle="display: none"/>--%>
+              <%--  <s:submit value="Submit" id="formSubmit" cssStyle="display: none"/>--%>
             </form>
             <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
                 <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
@@ -85,23 +84,23 @@
          closed="true" buttons="#dlg-buttons" title="Add Company" data-options="modal:true">
         <form id="fm" method="post">
             <table cellpadding="5">
-                <tr class="fitem">
-                    <td >Name:</td>
+                <tr>
+                    <td>Name:</td>
                     <td><input class="easyui-textbox" type="text" name="company.name"
                                data-options="required:true"></input></td>
                 </tr>
-                <tr class="fitem">
+                <tr>
                     <td>Pin Yin:</td>
                     <td><input class="easyui-textbox" type="text" name="company.pinyin"
                                data-options="required:true,validType:'email'"></input></td>
                 </tr>
-                <tr class="fitem">
+                <tr>
                     <td>Address:</td>
                     <td><input class="easyui-textbox" type="text" name="company.address"
                                data-options="required:true,multiline:true" style="height: 60px"></input>
                     </td>
                 </tr>
-                <tr class="fitem">
+                <tr>
                     <td>Comment:</td>
                     <td><input class="easyui-textbox" name="company.comment" data-options="multiline:true"
                                style="height:60px"></input></td>
@@ -132,16 +131,16 @@
             singleSelect: false,//是否单选
             pagination: true,//分页控件
             rownumbers: true,//行号
-            /*frozenColumns: [[
+            frozenColumns: [[
                 {field: 'ck', checkbox: true}
-            ]],*/
+            ]],
             toolbar: [{
                 text: '添加',
                 iconCls: 'icon-add',
                 handler: function () {
                     /*openDialog("add_dialog", "add");*/
                     /*$('#w').window('open');*/
-                    $('#dlg').dialog('open').dialog('setTitle', 'Add Company');
+                    $('#dlg').dialog('open').dialog('setTitle','Add Company');
                     $('#fm').form('clear');
                     url = '/test/company/insert';
                 }
@@ -149,8 +148,7 @@
                 text: '修改',
                 iconCls: 'icon-edit',
                 handler: function () {
-                    /*openDialog("add_dialog", "edit");*/
-                    editUser();
+                    openDialog("add_dialog", "edit");
                 }
             }, '-', {
                 text: '删除',
@@ -164,7 +162,7 @@
         var p = $('#list_data').datagrid('getPager');
         $(p).pagination({
             pageSize: 10,//每页显示的记录条数，默认为10
-            pageList: [5, 10, 20, 50],//可以设置每页记录条数的列表
+            pageList: [5, 10,20,50],//可以设置每页记录条数的列表
             beforePageText: '第',//页数文本框前显示的汉字
             afterPageText: '页    共 {pages} 页',
             displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
@@ -174,36 +172,6 @@
              $(this).pagination('loaded');
              }*/
         });
-        function saveUser() {
-            $('#fm').form('submit', {
-                url: '/test/company/insert',
-                onSubmit: function () {
-                    return $(this).form('validate');
-                },
-                success: function (result) {
-                    /* var result = eval('('+result+')');
-                     if (result.errorMsg){
-                     $.messager.show({
-                     title: 'Error',
-                     msg: result.errorMsg
-                     });
-                     } else {
-                     $('#dlg').dialog('close');		// close the dialog
-                     $('#dg').datagrid('reload');	// reload the user data
-                     }*/
-                    $('#dlg').dialog('close');
-                    $('#list_data').datagrid('reload');
-                }
-            });
-        }
-        function editUser() {
-            var row = $('#list_data').datagrid('getSelected');
-            if (row) {
-                $('#dlg').dialog('open').dialog('setTitle', 'Edit Company');
-                $('#fm').form('load', row);
-                url = 'update_user.php?id=' + row.id;
-            }
-        }
     </script>
 </div>
 </body>

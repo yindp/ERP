@@ -52,7 +52,7 @@
                 <prop key="current_session_context_class">thread</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
         <!-- 扫描与数据库表对应实体类所在的entity包 -->

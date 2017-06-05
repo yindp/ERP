@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
+ *//*
+
 @Namespace(value = "/test")
 @Scope(value = "prototype")
 @Controller(value = "testAction")
@@ -57,3 +60,4 @@ public class TestAction extends ActionSupport implements ServletRequestAware {
         return SUCCESS;
     }
 }
+*/

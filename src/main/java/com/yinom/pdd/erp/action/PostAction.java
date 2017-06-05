@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -6,7 +7,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.yinom.pdd.erp.bean.Company;
 import com.yinom.pdd.erp.bean.Department;
 import com.yinom.pdd.erp.bean.Post;
-import com.yinom.pdd.erp.service.ICompanyService;
+import com.yinom.pdd.erp.service.CompanyService;
 import com.yinom.pdd.erp.service.IDepartmentService;
 import com.yinom.pdd.erp.service.IPostService;
 import org.apache.struts2.convention.annotation.Action;
@@ -20,14 +21,18 @@ import org.springframework.stereotype.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
+ *//*
+
 @Namespace(value = "/post")
 @Scope(value = "prototype")
 @Controller(value = "postAction")
 @ParentPackage(value = "struts-default")
-/*@ParentPackage(value = "need-login")*/
+*/
+/*@ParentPackage(value = "need-login")*//*
+
 //@InterceptorRef(value = "myDefaultStack")
 public class PostAction extends ActionSupport implements ModelDriven {
 
@@ -39,7 +44,7 @@ public class PostAction extends ActionSupport implements ModelDriven {
     @Autowired
     private IPostService iPostService;
     @Autowired
-    private ICompanyService iCompanyService;
+    private CompanyService companyService;
     @Autowired
     private IDepartmentService iDepartmentService;
 
@@ -52,7 +57,7 @@ public class PostAction extends ActionSupport implements ModelDriven {
 
     @Action(value = "list", results = {@Result(name = "success", location = "/user/post.jsp"), @Result(name = "error", location = "/error.jsp")})
     public String Post() {
-        companies = iCompanyService.queryAll(post.getCompany());
+        companies = companyService.queryAll(post.getCompany());
         departments = iDepartmentService.queryAll(post.getDepartment());
         posts = iPostService.queryAll(post);
         ActionContext.getContext().put("posts", posts);
@@ -100,3 +105,4 @@ public class PostAction extends ActionSupport implements ModelDriven {
         this.companies = companies;
     }
 }
+*/

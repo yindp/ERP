@@ -1,18 +1,18 @@
 package com.yinom.pdd.erp.dao.impl;
 
-import com.yinom.pdd.erp.dao.IBaseDAO;
+import com.yinom.pdd.erp.bean.Pagination;
+import com.yinom.pdd.erp.dao.BaseDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by yindp on 5/4/2017.
  */
-public class BaseDAOImpl<T> implements IBaseDAO<T> {
+public class BaseDAOImpl<T> implements BaseDAO<T> {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -20,84 +20,73 @@ public class BaseDAOImpl<T> implements IBaseDAO<T> {
         return sessionFactory.getCurrentSession();
     }
 
-    public T query(Class entityClazz, Serializable id) {
-        return (T) getSession().get(entityClazz, id);
+    public void insert(T entity) {
+        getSession().save(entity);
     }
 
-    public Serializable insert(Object entity) {
-        return getSession().save(entity);
-    }
-
-    public void update(Object entity) {
-        getSession().saveOrUpdate(entity);
-    }
-
-    public void delete(Object entity) {
+    public void delete(T entity) {
         getSession().delete(entity);
     }
 
-    public void delete(Class<T> entityClazz, Serializable id) {
-        String hql = "delete from " + entityClazz.getSimpleName() + "where id=?";
-        Query query = getSession().createQuery(hql);
-        query.setParameter(0, id);
-        query.executeUpdate();
-        getSession().beginTransaction().commit();
+    public void update(T entity) {
+        getSession().update(entity);
     }
 
-    public List queryAll(Class entityClazz) {
-        return query("select en from " + entityClazz.getSimpleName() + " en");
-    }
-
-    public long queryCount(Class entityClazz) {
-        List list = query("select count(*) from" + entityClazz.getSimpleName());
-        if (list != null && list.size() == 1) {
-            return (Long) list.get(0);
-        }
-        return 0;
-    }
-
-    public List query(String hql) {
-        return (List) getSession().createQuery(hql).list();
-    }
-
-
-    public List<T> queryAll(String hql, Object... params) {
+    public Query queryExe(String hql, Object... params) {
         Query query = getSession().createQuery(hql);
         if (params != null) {
             for (int i = 0; i < params.length; i++) {
                 query.setParameter(i, params[i]);
             }
         }
-        return (List) query.list();
+        return query;
+    }
+
+    public Pagination count(Class<T> entityClazz) {
+        Pagination pagination = new Pagination();
+        String hql = "select count(*) from " + entityClazz.getSimpleName();
+        Query query = getSession().createQuery(hql);
+        int totalRows = ((Number) query.uniqueResult()).intValue();
+        pagination.setTotalRows(totalRows);
+       /* int totalPages = totalRows / pagination.getRowsPerPage() + 1;
+        pagination.setTotalPages(totalPages);*/
+        return pagination;
+    }
+
+    public long count(String hql, Object... params) {
+        return 0;
     }
 
     public T query(String hql, Object... params) {
+        return null;
+    }
+
+    public List<T> queryList(String hql, Object... params) {
+        return null;
+    }
+
+    public List<T> queryList(Pagination pagination, String hql, Object... params) {
         Query query = getSession().createQuery(hql);
-        for (int i = 0; i < params.length; i++) {
-            query.setParameter(i, params[i]);
+        if (params != null && params.length > 0) {
+            for (int i = 0; i < params.length; i++) {
+                query.setParameter(i + "", params[i]);
+            }
         }
-        return (T) query.uniqueResult();
-    }
-
-    protected List queryByPage(String hql, int pageNo, int pageSize) {
-        return getSession().createQuery(hql).setFirstResult((pageNo - 1) * pageSize).setMaxResults(pageSize).list();
-    }
-
-    protected List queryByPage(String hql, int pageNo, int pageSize, Object... params) {
-        Query query = getSession().createQuery(hql);
-        for (int i = 0; i < params.length; i++) {
-            query.setParameter(i + "", params[i]);
+        int first = (pagination.getCurrentPage() - 1) * pagination.getRowsPerPage() + 1;
+        int max;
+        if (pagination.getCurrentPage() != pagination.getTotalPages()) {
+            max = (pagination.getCurrentPage()) * pagination.getRowsPerPage();
+        } else {
+            max = pagination.getTotalRows();
         }
-        return query.setFirstResult((pageNo - 1) * pageSize).setMaxResults(pageSize).list();
+        List<T> resultList = query.setFirstResult(first).setMaxResults(pagination.getRowsPerPage()).list();
+        return resultList;
     }
 
-    public List<T> queryAll(String hql) {
+    public List<T> queryList(Pagination pagination,String hql) {
         Query query = getSession().createQuery(hql);
-
-        return  query.list();
-    }
-
-    public long queryCount(String hql, Object... params) {
-        return 0;
+        int first = (pagination.getCurrentPage() - 1) * pagination.getRowsPerPage() + 1;
+        List<T> resultList = query.setFirstResult(first).setMaxResults(pagination.getRowsPerPage()).list();
+        return resultList;
     }
 }

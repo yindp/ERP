@@ -6,7 +6,7 @@ import com.yinom.pdd.erp.bean.Company;
  * Created by yindp on 5/4/2017.
  */
 
-public interface ICompanyDAO extends IBaseDAO<Company> {
+public interface CompanyDAO extends BaseDAO<Company> {
    /* void insert(Company company);
 
     List<Company> queryAll();

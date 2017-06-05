@@ -1,10 +1,12 @@
+/*
 package com.yinom.pdd.erp.action;
 
-import com.opensymphony.xwork2.ActionContext;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import com.yinom.pdd.erp.bean.Company;
-import com.yinom.pdd.erp.service.ICompanyService;
+import com.yinom.pdd.erp.bean.Page;
+import com.yinom.pdd.erp.service.CompanyService;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -13,78 +15,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.logging.SimpleFormatter;
+import java.util.Map;
 
+*/
 /**
  * Created by yindp on 5/4/2017.
- */
-@Namespace(value = "/company")
+ *//*
+
+@Namespace(value = "/admin/company")
 @Scope(value = "prototype")
 @Controller(value = "companyAction")
-@ParentPackage(value = "struts-default")
-/*@ParentPackage(value = "need-login")*/
-//@InterceptorRef(value = "myDefaultStack")
-public class CompanyAction extends ActionSupport implements ModelDriven {
-
+@ParentPackage(value = "json-default")
+public class CompanyAction extends ActionSupport {
+    private String resultObj;
+    private Page page;
     private Company company;
-    private List<Company> companies = new ArrayList<Company>();
-    private List<Company> headquarters = new ArrayList<Company>();
-    private List<Company> affiliates = new ArrayList<Company>();
-
+    private List<Company> companyList = new ArrayList<Company>();
     @Autowired
-    private ICompanyService iCompanyService;
+    private CompanyService companyService;
 
-    public Object getModel() {
-        if (company == null) {
-            company = new Company();
+    @Action(value = "list", results = {@Result(type = "json",params = {"root","resultObj"}), @Result(name = "error", location = "/error.jsp")})
+    public String list() {
+        page = companyService.count();
+        companyList = companyService.queryList(page);
+        ArrayList<Map<String, Object>> all = new ArrayList<Map<String, Object>>();
+        for (Company company : companyList) {
+            Map<String, Object> m = new HashMap<String, Object>();
+            m.put("id", company.getId());
+            m.put("name", company.getName());
+            m.put("esc", company.getEsc());
+            m.put("address", company.getAddress());
+            m.put("pinyin", company.getPinyin());
+            m.put("comment", company.getComment());
+
+            all.add(m);
         }
-        return company;
-    }
-
-    @Action(value = "list", results = {@Result(name = "success", location = "/user/company.jsp"), @Result(name = "error", location = "/error.jsp")})
-    public String company() {
-        companies = iCompanyService.queryAll(company);
-        ActionContext.getContext().put("companies", companies);
+        Map<String, Object> json = new HashMap<String, Object>();
+        json.put("total", page.getTotalRows());
+        json.put("page", page.getCurrentPage());
+        json.put("rows", all);
+        Gson gson=new Gson();
+        resultObj = gson.toJson(json);
+        System.out.println(resultObj);
         return SUCCESS;
     }
 
-    @Action(value = "add", results = {@Result(name = "success", location = "/company/list",type = "redirect"), @Result(name = "error", location = "/error.jsp")})
-    public String add() {
-        if (company.getParent().getId().equals("-1")) {
-            company.setParent(null);
-        }
-        Calendar c=Calendar.getInstance();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmssSSS");
-        String no = sdf.format(c.getTime());
-        company.setNo(no);
-        iCompanyService.insert(company);
-        return SUCCESS;
-    }
-    public String insert() {
-        iCompanyService.insert(company);
-        return SUCCESS;
-    }
-    public String delete() {
-        return SUCCESS;
-    }
-    public String update() {
-        return SUCCESS;
-    }
-    public String query() {
-        return SUCCESS;
-    }
-    public String queryByPage() {
-        return SUCCESS;
-    }
-    public String queryAll() {
-        return SUCCESS;
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
-
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
+    }
 
     public Company getCompany() {
         return company;
@@ -94,27 +79,20 @@ public class CompanyAction extends ActionSupport implements ModelDriven {
         this.company = company;
     }
 
-    public List<Company> getHeadQuarters() {
-        return headquarters;
+    public Page getPage() {
+        return page;
     }
 
-    public void setHeadQuarters(List<Company> headquarters) {
-        this.headquarters = headquarters;
+    public void setPage(Page page) {
+        this.page = page;
     }
 
-    public List<Company> getCompanies() {
-        return companies;
+    public String getResultObj() {
+        return resultObj;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
-    }
-
-    public List<Company> getAffiliates() {
-        return affiliates;
-    }
-
-    public void setAffiliates(List<Company> affiliates) {
-        this.affiliates = affiliates;
+    public void setResultObj(String resultObj) {
+        this.resultObj = resultObj;
     }
 }
+*/

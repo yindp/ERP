@@ -1,3 +1,4 @@
+/*
 package com.yinom.pdd.erp.action;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -21,9 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * Created by yindp on 5/26/17.
- */
+ *//*
+
 @Namespace(value = "/admin/incidentCategory")
 @Scope(value = "prototype")
 @Controller(value = "incidentCategoryAction")
@@ -145,3 +148,4 @@ public class IncidentCategoryAction extends ActionSupport{
         this.incidentCategory = incidentCategory;
     }
 }
+*/

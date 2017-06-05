@@ -1,14 +1,14 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.Menu;
-import com.yinom.pdd.erp.dao.IMenuDAO;
+import com.yinom.pdd.erp.dao.MenuDAO;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 @Repository(value = "iMenuDAO")
-public class MenuDAOImpl extends BaseDAOImpl<Menu> implements IMenuDAO {
+public class MenuDAOImpl extends BaseDAOImpl<Menu> implements MenuDAO {
 /*
     @Autowired
     private SessionFactory sessionFactory;

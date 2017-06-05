@@ -1,14 +1,14 @@
 package com.yinom.pdd.erp.dao.impl;
 
 import com.yinom.pdd.erp.bean.Department;
-import com.yinom.pdd.erp.dao.IDepartmentDAO;
+import com.yinom.pdd.erp.dao.DepartmentDAO;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 @Repository(value = "iDepartmentDAO")
-public class DepartmentDAOImpl extends BaseDAOImpl<Department> implements IDepartmentDAO {
+public class DepartmentDAOImpl extends BaseDAOImpl<Department> implements DepartmentDAO {
 /*
     @Autowired
     private SessionFactory sessionFactory;

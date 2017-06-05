@@ -115,7 +115,7 @@
         </table>
     </div>
 </div>
-<div data-options="region:'west',split:true,title:'Menu'" style="width:15%;">
+<div data-options="region:'west',split:true,title:'Menu'" style="width:10%;">
     <div class="easyui-accordion" data-options="multiple:true,selected:false" style="width: 100%;">
         <div title="Setting">
             <div class="easyui-panel" style="padding:5px">
@@ -151,7 +151,7 @@
                     $('#tt').tabs('add', {
                         title: 'Company' + index,
                         /* content: '<div style="padding:10px">Content'+index+'</div>',*/
-                        content: '<iframe name="test" src="<%=path%>/company/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
+                        content: '<iframe name="test" src="<%=path%>/test/company/list" frameborder="0" style="height:100%;width:100%;" "></iframe>',
                         closable: true,//tab显示关闭键
                         cache: true
                     });

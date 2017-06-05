@@ -14,10 +14,11 @@
 <body>
 <s:form action="/company/add" method="POST">
    <%-- <s:select list="headquarters" listValue="" listKey="" name="" id="" headerKey="" headerValue=""/>--%>
-    <s:select label="Company" list="#companies" listKey="id" listValue="name" headerKey="-1" headerValue="Null"  name="parent.id"/>
-    <s:textfield label="Name" name="name"/>
-    <s:textarea label="Address" name="address"/>
-    <s:textarea label="Comment" name="comment"/>
+    <s:select label="Company:" list="#companies" listKey="id" listValue="name" headerKey="-1" headerValue="Null"  name="parent.id"/>
+    <s:textfield label="Name:" name="name"/>
+    <s:textfield label="Pin Yin:" name="pinyin"/>
+    <s:textarea label="Address:" name="address"/>
+    <s:textarea label="Comment:" name="comment"/>
     <s:submit value="Submit"/>
     <s:debug/>
 </s:form>

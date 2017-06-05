@@ -1,12 +1,12 @@
 package com.yinom.pdd.erp.dao;
 
-import com.yinom.pdd.erp.bean.Menu;
+import com.yinom.pdd.erp.bean.Department;
 
 /**
  * Created by yindp on 5/4/2017.
  */
 
-public interface IMenuDAO extends IBaseDAO<Menu> {
+public interface DepartmentDAO extends BaseDAO<Department> {
    /* void insert(Company company);
 
     List<Company> queryAll();
